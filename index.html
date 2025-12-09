@@ -1,534 +1,454 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
-  </head>
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  </body>
-</html>
- <!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Feature-Demo mit Bootstrap & jQuery</title>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>API Feature Dashboard 😎</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 Rebiii's Feature-Demo 🌸</title>
 
-  <!-- Bootstrap CSS (stable) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <style>
-    body { background: #ffe4f7; padding: 20px; }
-    header { text-align:center; margin-bottom:1.5rem; position:relative; }
-    header h1 { display:inline-block; background:#fff; padding:10px 28px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,0.08); }
-    /* pink ribbons left/right */
-    header::before { left:calc(50% - 220px); }
-    header::after { right:calc(50% - 220px); }
+<!-- Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
 
-    .feature-card { background:#f1beec; border:0; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.08); min-height:160px; }
-    .placeholder-box { background: rgba(255,255,255,0.85); padding:12px; border-radius:8px; min-height:100px; }
-    #map { height:300px; border-radius:8px; }
-    .small-muted { font-size:0.9rem; color:rgba(0,0,0,0.6); }
-  </style>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Feature-Demo mit Bootstrap & jQuery</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <style>
-    body { background: #ffe4f7; padding: 20px; }
-    header { text-align:center; margin-bottom:1.5rem; }
-    header h1 { display:inline-block; background:#fff; padding:10px 28px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,0.08); }
-
-    .feature-card { background:#f1beec; border:0; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.08); min-height:160px; }
-    .placeholder-box { background: rgba(255,255,255,0.85); padding:12px; border-radius:8px; min-height:100px; }
-    #map { height:300px; border-radius:8px; }
-    .small-muted { font-size:0.9rem; color:rgba(0,0,0,0.6); }
-
-    /* Lila Buttons */
-    .btn-turquoise {
-      background-color: #eb95e3;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .btn-turquoise:hover {
-      background-color: #ab1886;
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>🎀Seite von Rebiii🎀</h1>
-    </header>
-
-    <div class="row g-4">
-      <!-- Katzenbild -->
-      <div class="col-md-6">
-        <div class="card feature-card p-3 text-center">
-          <h5 class="card-title">🐱 Zufälliges Katzenbild</h5>
-          <button id="btn-cat" class="btn-turquoise mb-3">Katzenbild laden</button>
-          <div id="cat-result" class="placeholder-box">[Hier erscheint später das Katzenbild]</div>
-        </div>
-      </div>
-
-      <!-- Bitcoin -->
-      <div class="col-md-6">
-        <div class="card feature-card p-3 text-center">
-          <h5 class="card-title">💰 Aktueller Bitcoin-Preis</h5>
-          <button id="btn-btc" class="btn-turquoise mb-3">Bitcoin-Preis abrufen</button>
-          <div id="btc-result" class="placeholder-box">[Preis in USD & CHF]</div>
-        </div>
-      </div>
-
-      <!-- Wetter -->
-      <div class="col-12">
-        <div class="card feature-card p-3">
-          <h5 class="card-title">🌤 Aktuelles Wetter (Zürich)</h5>
-          <button id="btn-weather" class="btn-turquoise mb-3">Wetter abrufen</button>
-          <div id="weather-result" class="placeholder-box mb-3">[Temperaturen und Niederschlag]</div>
-          <div id="weather-chart"></div>
-        </div>
-      </div>
-
-      <!-- Ladepunkte -->
-      <div class="col-md-6">
-        <div class="card feature-card p-3">
-          <h5 class="card-title">⚡ 5 Nächstgelegene Strom-Tankstellen (Winterthur)</h5>
-          <button id="btn-stations" class="btn-turquoise mb-3">Ladestationen anzeigen</button>
-          <ul id="stations-result" class="list-group"></ul>
-        </div>
-      </div>
-
-      <!-- Karte -->
-      <div class="col-md-6">
-        <div class="card feature-card p-3 text-center">
-          <h5 class="card-title">🗺️ Karte (Leaflet)</h5>
-          <button id="btn-map" class="btn-turquoise mb-3">Karte anzeigen</button>
-          <div id="map" class="placeholder-box"></div>
-          <p class="small-muted mt-2">Karte zentriert auf Winterthur</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Highcharts -->
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-
-  <!-- Leaflet -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <script>
-    const LAT = 47.3769, LON = 8.5417;
-    const WINT_LAT = 47.4988, WINT_LON = 8.7237;
-    let mapInstance = null, mapInitialized = false, stationMarkers = [];
-
-    // Katzenbild
-    $("#btn-cat").click(function(){
-      $("#cat-result").text("Lade Katzenbild... 🐾");
-      $.getJSON("https://api.thecatapi.com/v1/images/search", function(data){
-        if(data[0]?.url){
-          $("#cat-result").html(`<img src="${data[0].url}" style="max-width:100%; border-radius:8px;">`);
-        } else { $("#cat-result").text("Keine Bilddaten erhalten."); }
-      });
-    });
-
-    // Bitcoin
-    $("#btn-btc").click(function(){
-      $("#btc-result").text("Hole Preise... ⏳");
-      $.getJSON("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,chf", function(data){
-        const usd = Number(data.bitcoin.usd).toLocaleString("de-CH");
-        const chf = Number(data.bitcoin.chf).toLocaleString("de-CH");
-        $("#btc-result").html(`<div><strong>USD:</strong> $ ${usd}</div><div><strong>CHF:</strong> ${chf} CHF</div>`);
-      });
-    });
-
-    // Wetter
-    $("#btn-weather").click(function(){
-      $("#weather-result").text("Lade Wetterdaten... 🌦");
-      $.getJSON(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days=5&timezone=Europe/Zurich`, function(data){
-        const d = data.daily;
-        let html="<table class='table table-sm'><thead><tr><th>Tag</th><th>Min °C</th><th>Max °C</th><th>Regen mm</th></tr></thead><tbody>";
-        for(let i=0;i<d.time.length;i++){
-          html+=`<tr><td>${d.time[i]}</td><td>${d.temperature_2m_min[i]}°C</td><td>${d.temperature_2m_max[i]}°C</td><td>${d.precipitation_sum[i]} mm</td></tr>`;
-        }
-        html+="</tbody></table>";
-        $("#weather-result").html(html);
-        Highcharts.chart("weather-chart", {
-          chart:{zoomType:'x'},
-          title:{text:'Zürich: Temperatur & Niederschlag (5 Tage)'},
-          xAxis:{categories:d.time},
-          yAxis:[{title:{text:'Temp (°C)'}},{title:{text:'Regen (mm)'},opposite:true}],
-          series:[
-            {name:'Tmax', type:'column', data:d.temperature_2m_max},
-            {name:'Tmin', type:'column', data:d.temperature_2m_min},
-            {name:'Regen', type:'spline', data:d.precipitation_sum, yAxis:1}
-          ],
-          credits:{enabled:false}
-        });
-      });
-    });
-
-    // Ladestationen
-// ---------- 4) Ladepunkte (GeoAdmin EVSEData) ----------
-
-$("#btn-stations").on("click", function () {
-  const $list = $("#stations-result");
-  $list.html("<li class='list-group-item'>Lade Daten... ⚡</li>");
-
-  const url = "https://data.geo.admin.ch/ch.bfe.ladestellen-elektromobilitaet/data/ch.bfe.ladestellen-elektromobilitaet.json";
-
-  // Winterthur Koordinaten
-  const WINT_LAT = 47.4988, WINT_LON = 8.7237;
-
-  $.getJSON(url)
-    .done(function (data) {
-      if (!data || !Array.isArray(data.EVSEData)) {
-        $list.html("<li class='list-group-item'>Unerwartetes Datenformat.</li>");
-        console.warn("Format:", data);
-        return;
-      }
-
-      // Alle Datensätze einsammeln
-      let records = [];
-      data.EVSEData.forEach(block => {
-        if (Array.isArray(block.EVSEDataRecord)) {
-          records.push(...block.EVSEDataRecord);
-        }
-      });
-
-      // Normalisieren
-      const stations = records.map(rec => {
-        // Koordinaten
-        let lat = null, lon = null;
-        if (typeof rec.GeoCoordinates?.Google === "string") {
-          const parts = rec.GeoCoordinates.Google.trim().split(" ");
-          if (parts.length === 2) {
-            lat = parseFloat(parts[0]);
-            lon = parseFloat(parts[1]);
-          }
-        }
-
-        // Name
-        let name = "Unbenannte Station";
-        if (Array.isArray(rec.ChargingStationNames)) {
-          const de = rec.ChargingStationNames.find(n => n.lang === "de");
-          name = (de ? de.value : rec.ChargingStationNames[0].value).trim();
-        }
-
-        return { name, lat, lon };
-      }).filter(s => Number.isFinite(s.lat) && Number.isFinite(s.lon));
-
-      if (!stations.length) {
-        $list.html("<li class='list-group-item'>Keine Stationen gefunden.</li>");
-        return;
-      }
-
-      // Distanzfunktion
-      function dist(lat1, lon1, lat2, lon2) {
-        const R = 6371, toRad = v => v * Math.PI / 180;
-        const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
-        const a = Math.sin(dLat / 2) ** 2 +
-                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                  Math.sin(dLon / 2) ** 2;
-        return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-      }
-
-      // Distanzen berechnen & Top 5
-      stations.forEach(s => s.dist = dist(WINT_LAT, WINT_LON, s.lat, s.lon));
-      const nearest = stations.sort((a, b) => a.dist - b.dist).slice(0, 5);
-
-      // Liste anzeigen
-      $list.empty();
-      nearest.forEach(s => {
-        $list.append(`
-          <li class="list-group-item">
-            <strong>${s.name}</strong><br>
-            <small>${s.dist.toFixed(2)} km entfernt</small>
-          </li>
-        `);
-      });
-
-      // Karte initialisieren falls nötig
-      if (!mapInitialized) {
-        mapInstance = L.map("map").setView([WINT_LAT, WINT_LON], 13);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: "&copy; OpenStreetMap contributors"
-        }).addTo(mapInstance);
-        mapInitialized = true;
-      }
-
-      // Marker aktualisieren
-      if (stationMarkers.length) stationMarkers.forEach(m => mapInstance.removeLayer(m));
-      stationMarkers = [];
-
-      nearest.forEach(s => {
-        const marker = L.marker([s.lat, s.lon])
-          .addTo(mapInstance)
-          .bindPopup(`${s.name}<br>${s.dist.toFixed(2)} km`);
-        stationMarkers.push(marker);
-      });
-
-      const group = new L.featureGroup(stationMarkers);
-      mapInstance.fitBounds(group.getBounds().pad(0.3));
-    })
-    .fail(() => {
-      $list.html("<li class='list-group-item'>Fehler beim Laden der Daten.</li>");
-    });
-});
-
-
-
-    // Leaflet Karte
-    $("#btn-map").click(function(){
-      if(!mapInitialized){
-        mapInstance=L.map('map').setView([WINT_LAT,WINT_LON],13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(mapInstance);
-        L.marker([WINT_LAT,WINT_LON]).addTo(mapInstance).bindPopup('Winterthur Zentrum').openPopup();
-        mapInitialized=true;
-      } else { mapInstance.invalidateSize(); }
-    });
-  </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
-  /* Leichte Effekte und moderne Optik */
-  input:focus, select:focus, textarea:focus {
-      box-shadow: 0 0 8px rgba(0, 123, 255, .4);
-      transition: 0.2s ease;
+  /* Body & animierter Hintergrund */
+  body {
+    margin:0;
+    padding:20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffe4f7, #f7d1ff);
+    overflow-x:hidden;
+    position:relative;
   }
 
-  button:hover {
-      transform: translateY(-2px);
-      transition: 0.2s;
+  /* Bewegende Bälle */
+  .bubble {
+    position:absolute;
+    border-radius:50%;
+    opacity:0.6;
+    animation:move 20s linear infinite;
+    pointer-events:none;
   }
 
+  @keyframes move {
+    0% { transform: translateY(0) rotate(0deg);}
+    50% { transform: translateY(-800px) rotate(360deg);}
+    100% { transform: translateY(0) rotate(720deg);}
+  }
+
+  /* Header */
+  header { text-align:center; margin-bottom:2rem; position:relative; }
+  header h1 {
+    display:inline-block;
+    background:#fff;
+    padding:15px 35px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    position:relative;
+    font-size:2rem;
+    color:#e91ee5;
+  }
+  header h1::before, header h1::after {
+    content:"🎀";
+    font-size:2rem;
+    position:absolute;
+    top:-10px;
+  }
+  header h1::before { left:-35px; animation:spin 4s linear infinite; }
+  header h1::after { right:-35px; animation:spin 6s linear infinite reverse; }
+  @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+
+  /* Cards */
+  .feature-card {
+    background: linear-gradient(145deg, #f1beec, #f4c4f9);
+    border:0;
+    border-radius:20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    min-height:160px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .feature-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+
+  /* Buttons */
+  .btn-turquoise {
+    background-color: #eb95e3;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(235, 149, 227, 0.4);
+    transition: all 0.3s ease;
+  }
+  .btn-turquoise:hover {
+    background-color: #ab1886;
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 8px 25px rgba(171, 24, 134, 0.6);
+  }
+
+  /* Placeholder */
+  .placeholder-box {
+    background: rgba(255,255,255,0.85);
+    padding:15px;
+    border-radius:15px;
+    min-height:100px;
+    text-align:center;
+    font-weight:bold;
+    color:#8c2b92;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.6);
+  }
+
+  /* Map */
+  #map { height:300px; border-radius:15px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+
+  /* Formular */
   .section-title {
-      font-weight: 600;
-      margin-top: 25px;
-      border-left: 4px solid #eb7ae0;
-      padding-left: 10px;
+    font-weight: 600;
+    margin-top: 25px;
+    border-left: 6px solid #c264b4;
+    padding-left: 12px;
+    color:#9b1ee9;
   }
+  input:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 12px rgba(235,30,229,0.4);
+    border-color: #eb95e3;
+    transition: 0.2s ease;
+  }
+  button[type="submit"] {
+    background: linear-gradient(135deg, #eb95e3, #ab1886);
+    color:white;
+    border-radius:50px;
+    padding:12px 30px;
+    font-size:1.1rem;
+    font-weight:bold;
+    box-shadow:0 6px 18px rgba(171,24,134,0.4);
+    transition: all 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow:0 10px 25px rgba(171,24,134,0.6);
+  }
+
+  /* Datenschutz Modal */
+  #privacy-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; animation:fadeIn 0.3s; }
+  #privacy-modal > div {
+    background:#fff; padding:25px; max-width:600px; border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2); text-align:left; position:relative;
+  }
+  #privacy-close { background:#eb95e3; color:white; border:none; padding:8px 20px; border-radius:25px; cursor:pointer; font-weight:bold; margin-top:15px; transition:0.3s; }
+  #privacy-close:hover { background:#ab1886; transform:scale(1.05); }
+  @keyframes fadeIn { 0% { opacity:0;} 100% { opacity:1;} }
+
+  /* Links */
+  a#random-privacy-btn { color:#ab1886; font-weight:bold; text-decoration:none; transition: 0.3s; }
+  a#random-privacy-btn:hover { color:#e91ee5; text-decoration:underline; }
 </style>
+</head>
+<body>
 
+<!-- Bubbles -->
+<script>
+for(let i=0;i<30;i++){
+  const bubble=document.createElement("div");
+  bubble.className="bubble";
+  bubble.style.width=(10+Math.random()*40)+"px";
+  bubble.style.height=(10+Math.random()*40)+"px";
+  bubble.style.background="rgba(235,149,227,"+(0.2+Math.random()*0.6)+")";
+  bubble.style.left=Math.random()*100+"%";
+  bubble.style.top=Math.random()*100+"%";
+  bubble.style.animationDuration=(15+Math.random()*15)+"s";
+  bubble.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(bubble);
+}
+</script>
 
-<div class="container my-5">
-  <h2 class="mb-4">Bewerbungsformular</h2>
+<div class="container">
+  <header>
+    <h1>🎀Seite von Rebiii🎀</h1>
+  </header>
 
-  <form action="https://webhook.site/01d87d30-4b62-4d8c-9e54-ac3bbc70cc26" method="POST">
+  <div class="row g-4">
+    <!-- Katzenbild -->
+    <div class="col-md-6">
+      <div class="card feature-card p-3 text-center">
+        <h5 class="card-title">🐱 Zufälliges Katzenbild</h5>
+        <button id="btn-cat" class="btn-turquoise mb-3">Katzenbild laden</button>
+        <div id="cat-result" class="placeholder-box">[Hier erscheint später das Katzenbild]</div>
+      </div>
+    </div>
 
-    <!-- Persönliche Daten -->
-    <h4 class="section-title">Persönliche Angaben</h4>
+    <!-- Bitcoin -->
+    <div class="col-md-6">
+      <div class="card feature-card p-3 text-center">
+        <h5 class="card-title">💰 Aktueller Bitcoin-Preis</h5>
+        <button id="btn-btc" class="btn-turquoise mb-3">Bitcoin-Preis abrufen</button>
+        <div id="btc-result" class="placeholder-box">[Preis in USD & CHF]</div>
+      </div>
+    </div>
 
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Geschlecht</label>
+    <!-- Wetter -->
+    <div class="col-12">
+      <div class="card feature-card p-3">
+        <h5 class="card-title">🌤 Aktuelles Wetter (Zürich)</h5>
+        <button id="btn-weather" class="btn-turquoise mb-3">Wetter abrufen</button>
+        <div id="weather-result" class="placeholder-box mb-3">[Temperaturen und Niederschlag]</div>
+        <div id="weather-chart"></div>
+      </div>
+    </div>
+
+    <!-- Ladepunkte -->
+    <div class="col-md-6">
+      <div class="card feature-card p-3">
+        <h5 class="card-title">⚡ 5 Nächstgelegene Strom-Tankstellen (Winterthur)</h5>
+        <button id="btn-stations" class="btn-turquoise mb-3">Ladestationen anzeigen</button>
+        <ul id="stations-result" class="list-group"></ul>
+      </div>
+    </div>
+
+    <!-- Karte -->
+    <div class="col-md-6">
+      <div class="card feature-card p-3 text-center">
+        <h5 class="card-title">🗺️ Karte (Leaflet)</h5>
+        <button id="btn-map" class="btn-turquoise mb-3">Karte anzeigen</button>
+        <div id="map" class="placeholder-box"></div>
+        <p class="small-muted mt-2">Karte zentriert auf Winterthur</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bewerbungsformular -->
+  <div class="container my-5">
+    <h2 class="mb-4" style="color:#e91ee5;">Bewerbungsformular</h2>
+
+    <form action="https://webhook.site/01d87d30-4b62-4d8c-9e54-ac3bbc70cc26" method="POST">
+      <!-- Persönliche Angaben -->
+      <h4 class="section-title">Persönliche Angaben</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Geschlecht</label>
+          <select class="form-select" required>
+            <option value="">Bitte wählen</option>
+            <option>Männlich</option>
+            <option>Weiblich</option>
+            <option>Divers</option>
+          </select>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Vorname</label>
+          <input type="text" class="form-control" required minlength="2">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Nachname</label>
+          <input type="text" class="form-control" required minlength="2">
+        </div>
+      </div>
+
+      <!-- Adresse -->
+      <h4 class="section-title">Adresse</h4>
+      <div class="row">
+        <div class="col-md-8 mb-3">
+          <label class="form-label">Strasse und Nr.</label>
+          <input type="text" class="form-control" required>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label class="form-label">PLZ</label>
+          <input type="text" class="form-control" required pattern="[0-9]{4}">
+        </div>
+        <div class="col-md-2 mb-3">
+          <label class="form-label">Ort</label>
+          <input type="text" class="form-control" required>
+        </div>
+      </div>
+
+      <!-- Kontakt -->
+      <h4 class="section-title">Kontaktinformationen</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Handy-Nummer</label>
+          <input type="tel" class="form-control" required pattern="\\+?[0-9 ]{6,}">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Bevorzugte Kontaktart</label>
+          <select class="form-select" required>
+            <option value="">Bitte wählen</option>
+            <option>Email</option>
+            <option>Telefon</option>
+            <option>WhatsApp</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Bewerbung -->
+      <h4 class="section-title">Bewerbungsunterlagen</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Geburtsdatum</label>
+          <input type="date" class="form-control" required>
+        </div>
+        <div class="col-md-8 mb-3">
+          <label class="form-label">Motivationsschreiben</label>
+          <textarea class="form-control" rows="5" required minlength="20"></textarea>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Lebenslauf (PDF)</label>
+        <input type="file" class="form-control" accept="application/pdf" required>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Portfolio (URL)</label>
+          <input type="url" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Datenschutzbestimmungen</label>
+          <div style="margin-top:10px;">
+            <a href="#" id="random-privacy-btn">Datenschutzbestimmungen anzeigen</a>
+          </div>
+          <div id="privacy-modal">
+            <div>
+              <h2>Datenschutzbestimmungen</h2>
+              <p id="privacy-text"></p>
+              <button id="privacy-close">Schliessen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datenschutz -->
+      <h4 class="section-title">Datenschutz</h4>
+      <div class="mb-3">
+        <label class="form-label">Akzeptieren Sie die Datenschutzbestimmungen?</label>
         <select class="form-select" required>
           <option value="">Bitte wählen</option>
-          <option>Männlich</option>
-          <option>Weiblich</option>
-          <option>Divers</option>
+          <option>Ja, ich akzeptiere</option>
+          <option>Nein</option>
         </select>
       </div>
 
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Vorname</label>
-        <input type="text" class="form-control" required minlength="2">
-      </div>
-
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Nachname</label>
-        <input type="text" class="form-control" required minlength="2">
-      </div>
-    </div>
-
-
-    <!-- Adresse -->
-    <h4 class="section-title">Adresse</h4>
-
-    <div class="row">
-      <div class="col-md-8 mb-3">
-        <label class="form-label">Strasse und Nr.</label>
-        <input type="text" class="form-control" required>
-      </div>
-
-      <div class="col-md-2 mb-3">
-        <label class="form-label">PLZ</label>
-        <input type="text" class="form-control" required pattern="[0-9]{4}">
-      </div>
-
-      <div class="col-md-2 mb-3">
-        <label class="form-label">Ort</label>
-        <input type="text" class="form-control" required>
-      </div>
-    </div>
-
-
-    <!-- Kontakt -->
-    <h4 class="section-title">Kontaktinformationen</h4>
-
-    <div class="row">
-
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-control" required>
-      </div>
-
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Handy-Nummer</label>
-        <input type="tel" class="form-control" required pattern="\\+?[0-9 ]{6,}">
-      </div>
-
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Bevorzugte Kontaktart</label>
-        <select class="form-select" required>
-          <option value="">Bitte wählen</option>
-          <option>Email</option>
-          <option>Telefon</option>
-          <option>WhatsApp</option>
-        </select>
-      </div>
-
-    </div>
-
-
-    <!-- Bewerbung -->
-    <h4 class="section-title">Bewerbungsunterlagen</h4>
-
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <label class="form-label">Geburtsdatum</label>
-        <input type="date" class="form-control" required>
-      </div>
-
-      <div class="col-md-8 mb-3">
-        <label class="form-label">Motivationsschreiben</label>
-        <textarea class="form-control" rows="5" required minlength="20"></textarea>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">Lebenslauf (PDF)</label>
-      <input type="file" class="form-control" accept="application/pdf" required>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Portfolio (URL)</label>
-        <input type="url" class="form-control">
-      </div>
-
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Datenschutzbestimmungen</label>
-        <!-- Datenschutz-Link + Modal -->
-<div style="margin-top:20px;">
-  <a href="#" id="random-privacy-btn">Datenschutzbestimmungen anzeigen</a>
-</div>
-
-<!-- Modal für Datenschutztext -->
-<div id="privacy-modal" 
-     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.65); align-items:center; justify-content:center;">
-  <div style="background:#fff; padding:20px; max-width:600px; border-radius:8px;">
-    <h2>Datenschutzbestimmungen</h2>
-    <p id="privacy-text"></p>
-    <button id="privacy-close">Schliessen</button>
+      <!-- Submit -->
+      <button type="submit"><i class="bi bi-envelope-fill"></i> Bewerbungsdaten senden</button>
+    </form>
   </div>
 </div>
 
-<script>
-// Zufällige Datenschutztexte
-const privacyTexts = [
-  "Wir verarbeiten personenbezogene Daten ausschliesslich zum Zweck der Bereitstellung unserer Dienste. Alle Daten werden vertraulich behandelt und nicht ohne Zustimmung weitergegeben.",
-  "Die Erhebung und Speicherung Ihrer Daten erfolgt nach geltendem Datenschutzrecht. Ihre Daten werden nur so lange aufbewahrt, wie es für die Nutzung erforderlich ist.",
-  "Ihre eingegebenen Informationen werden verschlüsselt übermittelt und sicher gespeichert. Wir geben keinerlei Daten an Dritte weiter, ausser dies ist gesetzlich vorgeschrieben.",
-  "Unsere Plattform verwendet nur technisch notwendige Cookies. Es werden keine Tracking- oder Marketing-Cookies eingesetzt.",
-  "Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer gespeicherten Daten. Kontaktieren Sie uns dazu gerne."
-];
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-// Klick → zufällige Datenschutzbestimmung anzeigen
-document.getElementById("random-privacy-btn").addEventListener("click", function(e) {
-  e.preventDefault();
-  const random = Math.floor(Math.random() * privacyTexts.length);
-  document.getElementById("privacy-text").innerText = privacyTexts[random];
-  document.getElementById("privacy-modal").style.display = "flex";
+<script>
+const LAT=47.4988, LON=8.7237;
+let map=null, mapInitialized=false;
+let stationMarkers=[];
+
+// Katzenbild
+$("#btn-cat").click(function(){
+  $("#cat-result").text("Lade Katzenbild... 🐾");
+  $.getJSON("https://api.thecatapi.com/v1/images/search",function(data){
+    if(data[0]?.url){
+      $("#cat-result").html(`<img src="${data[0].url}" style="max-width:100%; border-radius:8px;">`);
+    } else { $("#cat-result").text("Keine Bilddaten erhalten."); }
+  });
 });
 
-// Schliessen
-document.getElementById("privacy-close").addEventListener("click", function() {
-  document.getElementById("privacy-modal").style.display = "none";
+// Bitcoin
+$("#btn-btc").click(function(){
+  $("#btc-result").text("Hole Preise... ⏳");
+  $.getJSON("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,chf", function(data){
+    const usd = Number(data.bitcoin.usd).toLocaleString("de-CH");
+    const chf = Number(data.bitcoin.chf).toLocaleString("de-CH");
+    $("#btc-result").html(`<div><strong>USD:</strong> $ ${usd}</div><div><strong>CHF:</strong> ${chf} CHF</div>`);
+  });
+});
+
+// Wetter
+$("#btn-weather").click(function(){
+  $("#weather-result").text("Lade Wetterdaten... 🌦");
+  $.getJSON(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days=5&timezone=Europe/Zurich`, function(data){
+    const d = data.daily;
+    let html="<table class='table table-sm'><thead><tr><th>Tag</th><th>Min °C</th><th>Max °C</th><th>Regen mm</th></tr></thead><tbody>";
+    for(let i=0;i<d.time.length;i++){
+      html+=`<tr><td>${d.time[i]}</td><td>${d.temperature_2m_min[i]}°C</td><td>${d.temperature_2m_max[i]}°C</td><td>${d.precipitation_sum[i]} mm</td></tr>`;
+    }
+    html+="</tbody></table>";
+    $("#weather-result").html(html);
+  });
+});
+
+// Leaflet Karte initialisieren
+$("#btn-map").click(function(){
+  if(!mapInitialized){
+    map = L.map('map').setView([LAT,LON],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([LAT,LON]).addTo(map).bindPopup('Winterthur / Zentrum').openPopup();
+    mapInitialized=true;
+  }
+});
+
+// Ladestationen
+
+const stations=[
+  
+  {name:"EV Winterthur Sennhof", lat:47.498, lon:8.725},
+  {name:"EV Winterthur Oberseen", lat:47.500, lon:8.720},
+  {name:"EV Winterthur Töss", lat:47.496, lon:8.730},
+  {name:"EV Winterthur Zentrum", lat:47.495, lon:8.727},
+  {name:"EV Winterthur Grütze", lat:47.499, lon:8.718}
+];
+$("#btn-stations").click(function(){
+  const $list=$("#stations-result");
+  $list.empty();
+  if(mapInitialized){
+    stationMarkers.forEach(m=>map.removeLayer(m));
+    stationMarkers=[];
+  }
+
+  stations.forEach(s=>{
+    $list.append(`<li class="list-group-item">${s.name}</li>`);
+    if(mapInitialized){
+      const m=L.marker([s.lat,s.lon]).addTo(map).bindPopup(s.name);
+      stationMarkers.push(m);
+    }
+  });
+
+  if(mapInitialized){
+    const group = new L.featureGroup(stationMarkers);
+    map.fitBounds(group.getBounds().pad(0.2));
+  }
+});
+
+// Datenschutz
+const privacyTexts = [
+  "Wir verarbeiten personenbezogene Daten ausschließlich zum Zweck unserer Dienste...",
+  "Die Erhebung und Speicherung Ihrer Daten erfolgt nach geltendem Datenschutzrecht...",
+  "Ihre eingegebenen Informationen werden verschlüsselt übermittelt und sicher gespeichert...",
+  "Unsere Plattform verwendet nur technisch notwendige Cookies...",
+  "Sie haben jederzeit das Recht auf Auskunft, Berichtigung oder Löschung Ihrer Daten..."
+];
+document.getElementById("random-privacy-btn").addEventListener("click", function(e){
+  e.preventDefault();
+  const rand = Math.floor(Math.random()*privacyTexts.length);
+  document.getElementById("privacy-text").innerText = privacyTexts[rand];
+  document.getElementById("privacy-modal").style.display="flex";
+});
+document.getElementById("privacy-close").addEventListener("click", function(){
+  document.getElementById("privacy-modal").style.display="none";
 });
 </script>
 
-      
-      </div>
-    </div>
-
-
-    <!-- Datenschutz -->
-    <h4 class="section-title">Datenschutz</h4>
-
-    <div class="mb-3">
-      <label class="form-label">Akzeptieren Sie die Datenschutzbestimmungen?</label>
-      <select class="form-select" required>
-        <option value="">Bitte wählen</option>
-        <option>Ja, ich akzeptiere</option>
-        <option>Nein</option>
-      </select>
-    </div>
-
-    
-
-
-    <!-- Submit -->
-    <button type="submit" class="btn-turquoise mb-3">
-      <i class="bi bi-envelope-fill"></i> Bewerbungsdaten senden
-    </button>
-
-  </form>
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.js"></script>
-
 </body>
-</html> 
-
-
-
+</html>
